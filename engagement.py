@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, Text
-from pil import ImageTk, Image
+from PIL import ImageTk, Image
 
 import os
 
@@ -11,8 +11,13 @@ canvas = tk.Canvas(root, height = 500, width = 400, bg = "grey")
 canvas.pack()
 #canvas.title("PwC Engagement")
 
-path = "pwc_logo.png"
-img = ImageTk.PhotoImage(Image.open(path))
+
+#path = "pwc_logo.png"
+#img = ImageTk.PhotoImage(Image.open(path))
+
+img = ImageTk.PhotoImage(Image.open("pwc_logo.png"))
+canvas.create_image(20, 20, anchor= tk.NW, image = img)
+
 
 frame = tk.Frame(root, bg = "lightgrey")
 frame.place(relwidth = 0.8, relheight = 0.8, rely = 0.1, relx = 0.1)
