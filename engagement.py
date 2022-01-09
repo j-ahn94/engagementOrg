@@ -53,11 +53,13 @@ def tick():
     clock.after(200, tick)
     
 
-clock = tk.Label(frame1, font=("none", 25, "bold"), bg = "white", fg = "black", anchor = CENTER)
+clock = tk.Label(frame1, font=("none", 20, "bold"), bg = "white", fg = "black", anchor = CENTER)
 clock.grid(row = 0, column = 0)
 
 
 tick()
+
+
 
 
 #WORK ON THIS SUNDAY
@@ -66,9 +68,19 @@ tick()
 frame1.place.create_image(20, 20, anchor=NW, image =img2) """
 
 img2 = Image.open("stopwatch_circle.png")
-render = ImageTk.PhotoImage(img2)
+
+resized_circle_image = img2.resize((325, 350), Image.ANTIALIAS)
+
+render = ImageTk.PhotoImage(resized_circle_image)
 stopwatch = Label(frame1, image=render)
-stopwatch.place(x=50, y=50)
+stopwatch.place(x= 30, y = 70)
+
+
+
+
+addButton = tk.Button(frame1, text = "CREATE", fg = "red", height = 1, width = 15)
+addButton.place(x = 140, y= 400)
+
 
 #frame.create_image(10, 10, anchor=tk.NW, image=new_image)
 
