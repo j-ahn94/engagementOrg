@@ -1,13 +1,18 @@
+""" engagement.py is a program dedicated to PwC for measuring the amount of time spent
+    for each engagement.
+"""
+
 import tkinter as tk
 from tkinter import filedialog, Text
 from PIL import ImageTk, Image
+from datetime import datetime
 
 import os
 
 # create GUI window
 root = tk.Tk()
 
-canvas = tk.Canvas(root, height = 500, width = 400, bg = "grey")
+canvas = tk.Canvas(root, height = 500, width = 800, bg = "white")
 canvas.pack()
 #canvas.title("PwC Engagement")
 
@@ -15,25 +20,35 @@ canvas.pack()
 #path = "pwc_logo.png"
 #img = ImageTk.PhotoImage(Image.open(path))
 
-img = (Image.open("pwc_logo.png"))
+img = (Image.open("pwc_logo2.png"))
 #img = ImageTk.PhotoImage(Image.open("pwc_logo.png"))
 
 #canvas.create_image(0.1, 0.1, anchor= tk.W, image = img)
 
 
-frame = tk.Frame(root, bg = "lightgrey")
+frame = tk.Frame(root, bg = "white")
 frame.place(relwidth = 0.8, relheight = 0.8, rely = 0.1, relx = 0.1)
 
-resized_image = img.resize((80, 50), Image.ANTIALIAS)
+resized_image = img.resize((75, 45), Image.ANTIALIAS)
 new_image = ImageTk.PhotoImage(resized_image)
 
 #frame.create_image(10, 10, anchor=tk.NW, image=new_image)
 
 #Display PwC logo image
-label = tk.Label(frame, image = new_image)
+label = tk.Label(canvas, image = new_image)
 label.image = new_image
 label.place(x = 1, y = 1)
 
+
+def tick():
+    now = datetime.now().strftime('%B-%d')
+    clock.config(text=now)
+    clock.after(200, tick)
+
+clock = tk.Label(label, font=("none", 50, "bold"), bg = "white", fg = "black")
+clock.grid(row = 0, column = 0)
+
+tick()
 
 # create text field when clicking a 'Add' button
 entry1 = tk.Entry(root)
@@ -57,6 +72,5 @@ slogan = tk.Button(frame,
                 text = "Hello",
                 command=write_slogan)
 
+
 root.mainloop()
-
-
