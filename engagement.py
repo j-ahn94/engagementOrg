@@ -4,6 +4,7 @@
 
 import tkinter as tk
 from tkinter import filedialog, Text
+from tkinter import *
 from PIL import ImageTk, Image
 from datetime import datetime
 
@@ -26,8 +27,11 @@ img = (Image.open("pwc_logo2.png"))
 #canvas.create_image(0.1, 0.1, anchor= tk.W, image = img)
 
 
-frame = tk.Frame(root, bg = "white")
-frame.place(relwidth = 0.8, relheight = 0.8, rely = 0.1, relx = 0.1)
+frame1 = tk.Frame(root, bg = "yellow")
+frame1.place(relwidth = 0.45, relheight = 0.9, rely = 0.10, relx = 0.05)
+
+frame2 = tk.Frame(root, bg = "green")
+frame2.place(relwidth = 0.4, relheight = 0.9, rely = 0.10, relx = 0.53)
 
 resized_image = img.resize((75, 45), Image.ANTIALIAS)
 new_image = ImageTk.PhotoImage(resized_image)
@@ -45,30 +49,30 @@ def tick():
     clock.config(text=now)
     clock.after(200, tick)
 
-clock = tk.Label(label, font=("none", 50, "bold"), bg = "white", fg = "black")
+clock = tk.Label(frame1, font=("none", 25, "bold"), bg = "white", fg = "black", anchor = CENTER)
 clock.grid(row = 0, column = 0)
 
 tick()
 
-# create text field when clicking a 'Add' button
+""" # create text field when clicking a 'Add' button
 entry1 = tk.Entry(root)
 
 def textBoxCreate():
-    canvas.create_window(200, 140, window = entry1)
+    canvas.create_window(200, 140, window = entry1) """
 
 # button to quit the program
-quitButton = tk.Button(frame, text = "QUIT", fg = "red", command = quit)
+""" quitButton = tk.Button(frame, text = "QUIT", fg = "red", command = quit)
 quitButton.pack(side = tk.BOTTOM, padx = 10, pady = 10)
 
 # button to add engagement
 addButton = tk.Button(frame, text = "CREATE", fg = "red", command = textBoxCreate)
-addButton.pack(side = tk.BOTTOM)
+addButton.pack(side = tk.BOTTOM) """
 
 
 def write_slogan():
     print("Tkinter is easy to use!")
 
-slogan = tk.Button(frame,
+slogan = tk.Button(frame1,
                 text = "Hello",
                 command=write_slogan)
 
