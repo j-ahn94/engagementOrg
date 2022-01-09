@@ -12,8 +12,11 @@ import os
 
 # create GUI window
 root = tk.Tk()
+root.title('PwC - Stopwatch')
+root.resizable(0, 0)
 
 canvas = tk.Canvas(root, height = 500, width = 800, bg = "white")
+
 canvas.pack()
 #canvas.title("PwC Engagement")
 
@@ -33,8 +36,8 @@ frame1.place(relwidth = 0.45, relheight = 0.9, rely = 0.10, relx = 0.05)
 frame2 = tk.Frame(root, bg = "green")
 frame2.place(relwidth = 0.4, relheight = 0.9, rely = 0.10, relx = 0.53)
 
-resized_image = img.resize((75, 45), Image.ANTIALIAS)
-new_image = ImageTk.PhotoImage(resized_image)
+resized_pwc_image = img.resize((75, 45), Image.ANTIALIAS)
+new_image = ImageTk.PhotoImage(resized_pwc_image)
 
 #frame.create_image(10, 10, anchor=tk.NW, image=new_image)
 
@@ -45,14 +48,36 @@ label.place(x = 1, y = 1)
 
 
 def tick():
-    now = datetime.now().strftime('%B-%d')
+    now = datetime.now().strftime('%B %d \n %A')
     clock.config(text=now)
     clock.after(200, tick)
+    
 
 clock = tk.Label(frame1, font=("none", 25, "bold"), bg = "white", fg = "black", anchor = CENTER)
 clock.grid(row = 0, column = 0)
 
+
 tick()
+
+
+#WORK ON THIS SUNDAY
+
+""" img2 = PhotoImage(file = "stopwatch_circle.png")
+frame1.place.create_image(20, 20, anchor=NW, image =img2) """
+
+img2 = Image.open("stopwatch_circle.png")
+render = ImageTk.PhotoImage(img2)
+stopwatch = Label(frame1, image=render)
+stopwatch.place(x=50, y=50)
+
+#frame.create_image(10, 10, anchor=tk.NW, image=new_image)
+
+#Display PwC logo image
+""" label = tk.Label(canvas, image = new_image)
+label.image = new_image
+label.place(x = 1, y = 1) """
+
+
 
 """ # create text field when clicking a 'Add' button
 entry1 = tk.Entry(root)
