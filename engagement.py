@@ -3,6 +3,7 @@
 """
 
 import tkinter as tk
+
 from tkinter import filedialog, Text
 from tkinter import *
 from PIL import ImageTk, Image
@@ -63,16 +64,16 @@ stopwatch_label.place(x=50,y=40) """
 #WORK ON THIS SUNDAY
 
 
-""" img2 = Image.open("circle.png")
+img2 = Image.open("circle.png")
 
 resized_circle_image = img2.resize((325, 350), Image.ANTIALIAS)
 
 render = ImageTk.PhotoImage(resized_circle_image)
 stopwatch = tk.Label(frame1, image=render)
-stopwatch.place(x= 30, y = 70) """
+stopwatch.place(x= 30, y = 70)
 
-lbl = Label(
-    tk.ws,
+""" lbl = Label(
+    root,
     text="00",
     fg="black",
     bg="#299617",
@@ -80,40 +81,79 @@ lbl = Label(
     )
 
 lbl.place(x=160, y=170)
+ """
 
 counter = -1
+
+hours, minutes, seconds = 0, 0, 0
+
 running = False
 
-def counter_label(lbl):
+#NEW
+
+def start():
+    global running
+    if not running:
+        counter_label()
+        running = True
+
+#NEW
+def counter_label():
+    global hours, minutes, seconds
+    seconds += 1
+    if seconds == 60:
+        minutes += 1
+        seconds = 0
+    if minutes == 60:
+        hours += 1
+        minutes = 0
+    
+    hours_string = f'{hours}' if hours > 9 else f'0{hours}'
+    minutes_string = f'{minutes}' if minutes > 9 else f'0{minutes}'
+    seconds_string = f'{seconds}' if seconds > 9 else f'0{seconds}'
+
+    stopwatch_label.config(text=hours_string + ":" + minutes_string + ":" + seconds_string)
+
+    global update_time
+    update_time = stopwatch_label.after(1000, counter_label)
+
+stopwatch_label = tk.Label(text='00:00:00', font=('Arial', 40))
+stopwatch_label.pack()
+
+start_button = tk.Button(text = "start", height = 5, width = 7, font = ('Arial', 20), command = start)
+start_button.pack(side=tk.LEFT)
+
+""" def counter_label(lbl):
     def count():
         if running:
             global counter
             if counter == -1:
-                frame1.display == "00"
+                display = "00:"
             else:
                 display = str(counter)
             lbl['text'] = display
 
             lbl.after(1000, count)
             counter += 1
-    count()
+    count() """
 
-def StartTimer(lbl):
+""" def StartTimer(lbl):
     global running
     running = True
     counter_label(lbl)
-    addButton['state'] = 'disabled'
+    addButton['state'] = 'disabled' """
 
-addButton = Button(
-    tk.ws,
+""" addButton = Button(
+    root,
     text="START",
     width= 15,
-    height = 1,  
+    height = 1,
+    command=lambda:StartTimer(lbl) 
 )
 
 addButton.place(x = 140, y = 400)
 
-addButton = tk.Button(frame1, text = "START", fg = "red", height = 1, width = 15)
+addButton = tk.Button(frame1, text = "START", fg = "red", height = 1, width = 15) """
 
 
 #frame.create_image(10, 10, anchor=tk.NW, image=new_image)
