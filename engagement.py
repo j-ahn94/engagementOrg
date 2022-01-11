@@ -4,7 +4,7 @@
 
 import tkinter as tk
 
-from tkinter import filedialog, Text
+from tkinter import filedialog, Text, ttk
 from tkinter import *
 from PIL import ImageTk, Image
 from datetime import datetime
@@ -52,7 +52,7 @@ def tick():
     clock.after(200, tick)
     
 clock = tk.Label(frame1, font=("none", 20, "bold"), bg = "white", fg = "black", anchor = CENTER)
-clock.grid(row = 0, column = 0)
+clock.place(x = 110, y = 2)
 
 tick()
 
@@ -117,11 +117,54 @@ def counter_label():
     global update_time
     update_time = stopwatch_label.after(1000, counter_label)
 
-stopwatch_label = tk.Label(text='00:00:00', font=('Arial', 40))
-stopwatch_label.pack()
+information = tk.Label(text = 'PLEASE SELECT A TASK', font=('Arial', 9))
+information.place(x = 160, y = 250)
 
-start_button = tk.Button(text = "start", height = 5, width = 7, font = ('Arial', 20), command = start)
-start_button.pack(side=tk.LEFT)
+stopwatch_label = tk.Label(text='00:00:00', font=('Arial', 20))
+stopwatch_label.place(x = 190, y = 280)
+
+start_button = tk.Button(text = "start", height = 2, width = 10, font = ('Arial', 10), command = start)
+start_button.place(x = 190, y = 430)
+
+
+
+tabControl = ttk.Notebook(frame2)
+
+tab1 = ttk.Frame(tabControl)
+tab2 = ttk.Frame(tabControl)
+
+tabControl.add(tab1, text = 'TASKS')
+tabControl.add(tab2, text = 'STATISTICS')
+
+tabControl.pack(expand = 1, fill = 'both', ipadx = 50)
+
+ttk.Label(tab1,
+        text = "TASKS", font = '50').grid(column = 0,
+                            row = 0,
+                            padx = 20,
+                            pady = 10)
+
+
+my_entries = []
+count = 0
+
+def my_upd():
+    global count
+    MAXIMUM = 360
+    if count <= MAXIMUM:
+        my_entries.append(Text(frame2, width = 30, height = 1).place(x = 30, y = 75 + count))
+        #my_entries[-1].append.grid(row = 0, column = count + 0, padx = 5)
+        count += 30
+    #Text(frame2, width = 30, height = 1).place(x = 30, y = 75)
+
+Button(tab1, text='-', bg = 'yellow').place(x = 270, y = 10)
+Button(tab1, text='+', bg = 'yellow', command = lambda:my_upd()).place(x = 290, y = 10)
+
+ttk.Label(tab2,
+        text = "Welcome to GeeksBruh").grid(column = 0,
+                            row = 0,
+                            padx = 30,
+                            pady = 30)
 
 """ def counter_label(lbl):
     def count():
@@ -180,12 +223,12 @@ addButton = tk.Button(frame, text = "CREATE", fg = "red", command = textBoxCreat
 addButton.pack(side = tk.BOTTOM) """
 
 
-def write_slogan():
+""" def write_slogan():
     print("Tkinter is easy to use!")
 
 slogan = tk.Button(frame1,
                 text = "Hello",
-                command=write_slogan)
+                command=write_slogan) """
 
 
 root.mainloop()
