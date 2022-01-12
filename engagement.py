@@ -148,16 +148,19 @@ ttk.Label(tab1,
 my_entries = []
 count = 0
 
+def delete():
+    my_entries()
+
 def my_upd():
     global count
     MAXIMUM = 360
     if count <= MAXIMUM:
-        my_entries.append(Text(frame2, width = 30, height = 1).place(x = 30, y = 75 + count))
+        my_entries.append(Text(frame2, width = 30, height = 1, padx = 10, pady = 5).place(x = 30, y = 75 + count))
         #my_entries[-1].append.grid(row = 0, column = count + 0, padx = 5)
-        count += 30
+        count += 40
     #Text(frame2, width = 30, height = 1).place(x = 30, y = 75)
 
-Button(tab1, text='-', bg = 'yellow').place(x = 270, y = 10)
+Button(tab1, text='-', bg = 'yellow', command = lambda:delete()).place(x = 270, y = 10)
 Button(tab1, text='+', bg = 'yellow', command = lambda:my_upd()).place(x = 290, y = 10)
 
 ttk.Label(tab2,
