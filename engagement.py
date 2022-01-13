@@ -98,6 +98,19 @@ def start():
         running = True
     start_button.pack_forget()
 
+    pause = tk.Button(frame1, text = "start", height = 2, width = 10, font = ('Arial', 10), command = pause)
+
+    """ start_button.place(x = 100, y = 300) """
+
+    
+
+def pause():
+    global running
+    if running:
+        stopwatch_label.after_cancel(update_time)
+        running = False
+
+
 #NEW
 def counter_label():
     global hours, minutes, seconds
@@ -124,9 +137,11 @@ information.place(x = 160, y = 250)
 stopwatch_label = tk.Label(text='00:00:00', font=('Arial', 20))
 stopwatch_label.place(x = 190, y = 280)
 
-start_button = tk.Button(text = "start", height = 2, width = 10, font = ('Arial', 10), command = start)
-start_button.place(x = 190, y = 430)
-start_button.pack()
+start_button = tk.Button(frame1, text = "start", height = 2, width = 10, font = ('Arial', 10), command = start)
+
+""" start_button.place(x = 100, y = 300) """
+
+start_button.pack(side = BOTTOM)
 
 
 tabControl = ttk.Notebook(frame2)
@@ -144,7 +159,6 @@ ttk.Label(tab1,
                             row = 0,
                             padx = 20,
                             pady = 10)
-
 
 my_entries = []
 count = 0
