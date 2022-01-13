@@ -91,6 +91,12 @@ running = False
 
 #NEW
 
+def pause():
+    global running
+    if running:
+        stopwatch_label.after_cancel(update_time)
+        running = False
+
 def start():
     global running
     if not running:
@@ -98,19 +104,13 @@ def start():
         running = True
     start_button.pack_forget()
 
-    pause = tk.Button(frame1, text = "start", height = 2, width = 10, font = ('Arial', 10), command = pause)
+    pause_button = tk.Button(frame1, text = "PAUSE", height = 2, width = 10, font = ('Arial', 10), command = pause)
+
+    pause_button.pack(side = BOTTOM)
 
     """ start_button.place(x = 100, y = 300) """
 
     
-
-def pause():
-    global running
-    if running:
-        stopwatch_label.after_cancel(update_time)
-        running = False
-
-
 #NEW
 def counter_label():
     global hours, minutes, seconds
