@@ -96,6 +96,7 @@ def start():
     if not running:
         counter_label()
         running = True
+    start_button.pack_forget()
 
 #NEW
 def counter_label():
@@ -125,7 +126,7 @@ stopwatch_label.place(x = 190, y = 280)
 
 start_button = tk.Button(text = "start", height = 2, width = 10, font = ('Arial', 10), command = start)
 start_button.place(x = 190, y = 430)
-
+start_button.pack()
 
 
 tabControl = ttk.Notebook(frame2)
@@ -148,19 +149,24 @@ ttk.Label(tab1,
 my_entries = []
 count = 0
 
-def delete():
-    my_entries()
+""" def delete():
+    my_entries.delete(0, tk.END) """
 
 def my_upd():
     global count
+    
     MAXIMUM = 360
     if count <= MAXIMUM:
         my_entries.append(Text(frame2, width = 30, height = 1, padx = 10, pady = 5).place(x = 30, y = 75 + count))
         #my_entries[-1].append.grid(row = 0, column = count + 0, padx = 5)
+        
         count += 40
+    
+        if count >= 40:
+            my_entries.bindtags((my_entries, frame2, "all"))
     #Text(frame2, width = 30, height = 1).place(x = 30, y = 75)
 
-Button(tab1, text='-', bg = 'yellow', command = lambda:delete()).place(x = 270, y = 10)
+""" Button(tab1, text='-', bg = 'yellow', command = lambda:delete()).place(x = 270, y = 10) """
 Button(tab1, text='+', bg = 'yellow', command = lambda:my_upd()).place(x = 290, y = 10)
 
 ttk.Label(tab2,
