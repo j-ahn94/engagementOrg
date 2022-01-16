@@ -97,6 +97,7 @@ def pause():
         stopwatch_label.after_cancel(update_time)
         running = False
 
+   
 def start():
     global running
     if not running:
@@ -104,13 +105,13 @@ def start():
         running = True
     start_button.pack_forget()
 
-    pause_button = tk.Button(frame1, text = "PAUSE", height = 2, width = 10, font = ('Arial', 10), command = pause)
+    pause_button = tk.Button(frame1, text = "pause", height = 2, width = 10, font = ('Arial', 10), command = pause)
 
     pause_button.pack(side = BOTTOM)
 
     """ start_button.place(x = 100, y = 300) """
 
-    
+
 #NEW
 def counter_label():
     global hours, minutes, seconds
@@ -166,18 +167,25 @@ count = 0
 """ def delete():
     my_entries.delete(0, tk.END) """
 
+def select(select_button):
+    select_button.pack_forget()
+
+
 def my_upd():
     global count
     
     MAXIMUM = 360
     if count <= MAXIMUM:
-        my_entries.append(Text(frame2, width = 30, height = 1, padx = 10, pady = 5).place(x = 30, y = 75 + count))
+        my_entries.append(Text(frame2, width = 23, height = 1, padx = 10, pady = 5).place(x = 30, y = 75 + count))
         #my_entries[-1].append.grid(row = 0, column = count + 0, padx = 5)
-        
+        select_button = Button(frame2, text = "SELECT", command = lambda:select(select_button))
+        """ select_button.pack(x = 260, y = 75 + count) """
+        select_button.pack(side = BOTTOM)
+        #.place(x = 260, y = 75 + count)
         count += 40
     
-        if count >= 40:
-            my_entries.bindtags((my_entries, frame2, "all"))
+        """ Button(tab1, text='SUB', bg = 'yellow', command = lambda:my_upd()).place(x = 60, y = 90 + count) """
+
     #Text(frame2, width = 30, height = 1).place(x = 30, y = 75)
 
 """ Button(tab1, text='-', bg = 'yellow', command = lambda:delete()).place(x = 270, y = 10) """
