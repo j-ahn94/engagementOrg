@@ -168,7 +168,9 @@ count = 0
     my_entries.delete(0, tk.END) """
 
 def select(select_button):
-    select_button.pack_forget()
+    
+
+    select_button.place_forget()
 
 
 def my_upd():
@@ -178,9 +180,10 @@ def my_upd():
     if count <= MAXIMUM:
         my_entries.append(Text(frame2, width = 23, height = 1, padx = 10, pady = 5).place(x = 30, y = 75 + count))
         #my_entries[-1].append.grid(row = 0, column = count + 0, padx = 5)
-        select_button = Button(frame2, text = "SELECT", command = lambda:select(select_button))
+        select_button = Button(frame2, text = "SELECT", command = lambda:select(select_button), width = 5, height = 1, bg = 'white')
         """ select_button.pack(x = 260, y = 75 + count) """
-        select_button.pack(side = BOTTOM)
+        #select_button.pack(side = tk.RIGHT)
+        select_button.place(x = 100, y = 75 + count)
         #.place(x = 260, y = 75 + count)
         count += 40
     
