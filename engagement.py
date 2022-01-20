@@ -135,6 +135,10 @@ def counter_label():
 information = tk.Label(text = 'PLEASE SELECT A TASK', font=('Arial', 9))
 information.place(x = 160, y = 250)
 
+t2 = tk.Text()
+t2.place(x = 160, y = 250)
+t2.place_forget()
+
 stopwatch_label = tk.Label(text='00:00:00', font=('Arial', 20))
 stopwatch_label.place(x = 190, y = 280)
 
@@ -171,6 +175,7 @@ def select(select_button):
     select_button.place_forget()
     information.destroy()
 
+    t2.insert(my_entries.insert("1", END))
 
 def my_upd():
     global count
