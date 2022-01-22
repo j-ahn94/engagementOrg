@@ -171,33 +171,35 @@ count = 0
 """ def delete():
     my_entries.delete(0, tk.END) """
 
-def select(select_button):
+""" def select(select_button):
     select_button.place_forget()
     information.destroy()
 
-    t2.insert(my_entries.insert("1", END))
+    for x in range(len(my_entries)):
+        t2.insert(1.0, my_entries[x]) """
 
-def my_upd():
+""" def my_upd():
     global count
     
 
     MAXIMUM = 360
     if count <= MAXIMUM:
         my_entries.append(Text(frame2, width = 23, height = 1, padx = 10, pady = 5).place(x = 30, y = 75 + count))
-        #my_entries[-1].append.grid(row = 0, column = count + 0, padx = 5)
+        
         select_button = Button(frame2, text = "SELECT", command = lambda:select(select_button), width = 5, height = 1, bg = 'white')
-        """ select_button.pack(x = 260, y = 75 + count) """
-        #select_button.pack(side = tk.RIGHT)
+        
+        
         select_button.place(x = 250, y = 75 + count)
-        #.place(x = 260, y = 75 + count)
-        count += 40
-    
-        """ Button(tab1, text='SUB', bg = 'yellow', command = lambda:my_upd()).place(x = 60, y = 90 + count) """
+        
+        count += 40 """
 
     #Text(frame2, width = 30, height = 1).place(x = 30, y = 75)
 
 """ Button(tab1, text='-', bg = 'yellow', command = lambda:delete()).place(x = 270, y = 10) """
-Button(tab1, text='+', bg = 'yellow', command = lambda:my_upd()).place(x = 290, y = 10)
+
+my_entries.append(Text(frame2, width = 23, height = 1, padx = 10 , pady = 5).place(x = 30, y = 75))
+
+Button(tab1, text='SELECT', bg = 'yellow', command = lambda: insertItem).place(x = 250, y = 50)
 
 ttk.Label(tab2,
         text = "Welcome to GeeksBruh").grid(column = 0,
