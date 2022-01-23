@@ -14,7 +14,7 @@ import os
 # create GUI window
 root = tk.Tk()
 root.title('PwC - Stopwatch')
-root.resizable(0, 0)
+""" root.resizable(0, 0) """
 
 canvas = tk.Canvas(root, height = 500, width = 800)
 
@@ -195,11 +195,20 @@ count = 0
 
     #Text(frame2, width = 30, height = 1).place(x = 30, y = 75)
 
-""" Button(tab1, text='-', bg = 'yellow', command = lambda:delete()).place(x = 270, y = 10) """
+""" my_entries.append(Text(frame2, width = 23, height = 1, padx = 10 , pady = 5).place(x = 30, y = 75)) """
 
-my_entries.append(Text(frame2, width = 23, height = 1, padx = 10 , pady = 5).place(x = 30, y = 75))
+def insertItem():
+    listbox.insert(tk.END, content.get())
 
-Button(tab1, text='SELECT', bg = 'yellow', command = lambda: insertItem).place(x = 250, y = 50)
+button = tk.Button(frame2, text='SELECT', bg = 'yellow', command = insertItem).pack()
+
+content = tk.StringVar()
+
+entry = tk.Entry(frame2, textvariable = content).pack()
+
+listbox = tk.Listbox(frame2)
+listbox.pack()
+
 
 ttk.Label(tab2,
         text = "Welcome to GeeksBruh").grid(column = 0,
