@@ -200,11 +200,25 @@ count = 0
 def insertItem():
     listbox.insert(tk.END, content.get())
 
-button = tk.Button(frame2, text='SELECT', bg = 'yellow', command = insertItem).pack()
+def deleteList():
+    listbox.delete(0, tk.END)
+
+def deleteItemSelected():
+    listbox.delete(tk.ANCHOR)
+
+button = tk.Button(frame2, text='Insert Item', bg = 'yellow', command = insertItem)
+button.pack()
+
+button_delete = tk.Button(frame2, text='Refresh', bg = 'yellow', command = deleteList)
+button_delete.pack()
+
+button_delete_selected = tk.Button(frame2, text='Delete Selected Item', bg = 'yellow', command = deleteItemSelected)
+button_delete_selected.pack()
 
 content = tk.StringVar()
 
-entry = tk.Entry(frame2, textvariable = content).pack()
+entry = tk.Entry(frame2, textvariable = content)
+entry.pack()
 
 listbox = tk.Listbox(frame2)
 listbox.pack()
