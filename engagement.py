@@ -199,7 +199,8 @@ count = 0
 
 def insertItem():
     listbox.insert(tk.END, content.get())
-
+    information.destroy()
+    
 def deleteList():
     listbox.delete(0, tk.END)
 
@@ -207,21 +208,21 @@ def deleteItemSelected():
     listbox.delete(tk.ANCHOR)
 
 button = tk.Button(frame2, text='Insert Item', bg = 'yellow', command = insertItem)
-button.pack()
+button.place(x = 160, y = 75)
 
 button_delete = tk.Button(frame2, text='Refresh', bg = 'yellow', command = deleteList)
-button_delete.pack()
+button_delete.place(x = 160, y = 225)
 
 button_delete_selected = tk.Button(frame2, text='Delete Selected Item', bg = 'yellow', command = deleteItemSelected)
-button_delete_selected.pack()
+button_delete_selected.place(x = 160, y = 250)
 
 content = tk.StringVar()
 
 entry = tk.Entry(frame2, textvariable = content)
-entry.pack()
+entry.place(x = 30, y = 80)
 
 listbox = tk.Listbox(frame2)
-listbox.pack()
+listbox.place(x = 30, y = 120)
 
 
 ttk.Label(tab2,
